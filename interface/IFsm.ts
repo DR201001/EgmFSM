@@ -1,4 +1,4 @@
-import IEntity from "./IEntity";
+import IFsmEntity from "./IFsmEntity";
 import IFsmMessage from "./IFsmMessage";
 import IFsmState from "./IFsmState";
 
@@ -32,7 +32,7 @@ export default interface IFsm<T> {
      * 设置状态机实体
      * @param entity 
      */
-    setEntity(entity: IEntity<T>): void;
+    setEntity(entity: IFsmEntity<T>): void;
 
     /**
      * 获取状态机实体

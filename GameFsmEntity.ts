@@ -1,9 +1,9 @@
 import StateMachine from "./StateMachine";
-import IEntity from "./interface/IEntity";
+import IFsmEntity from "./interface/IFsmEntity";
 import IFsm from "./interface/IFsm";
 import IFsmMessage from "./interface/IFsmMessage";
 
-export default abstract class GameFsmEntity<T> implements IEntity<T> {
+export default abstract class GameFsmEntity<T> implements IFsmEntity<T> {
     private fsm: IFsm<T> = null;
 
     private obj: T = null;

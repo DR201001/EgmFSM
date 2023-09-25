@@ -1,7 +1,7 @@
 import IFsm from "./IFsm";
 import IFsmMessage from "./IFsmMessage";
 
-export default interface IEntity<T> {
+export default interface IFsmEntity<T> {
     /**
      * 设置状态机
      * @param fsm 

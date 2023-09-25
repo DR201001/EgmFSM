@@ -1,7 +1,7 @@
 import IFsmMessage from "./interface/IFsmMessage";
 import IFsm from "./interface/IFsm";
 import IFsmState from "./interface/IFsmState";
-import IEntity from "./interface/IEntity";
+import IFsmEntity from "./interface/IFsmEntity";
 
 export default abstract class FsmState<T> implements IFsmState {
     protected machine: IFsm<T> = undefined;
@@ -14,7 +14,7 @@ export default abstract class FsmState<T> implements IFsmState {
 
     }
 
-    protected getEntity(): IEntity<T> {
+    protected getEntity(): IFsmEntity<T> {
         return this.machine?.getEntity();
     }
 

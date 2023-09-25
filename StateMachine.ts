@@ -1,13 +1,13 @@
 import IFsmMessage from "./interface/IFsmMessage";
 import IFsm from "./interface/IFsm";
 import IFsmState from "./interface/IFsmState";
-import IEntity from "./interface/IEntity";
+import IFsmEntity from "./interface/IFsmEntity";
 
 export default class StateMachine<T> implements IFsm<T> {
     private curState: IFsmState = undefined;
 
     // 状态机实体
-    private entity: IEntity<T> = undefined;
+    private entity: IFsmEntity<T> = undefined;
 
     onUpdate(dt: number, msg?: IFsmMessage<string, any>): void {
         this.getCurrentState()?.onUpdate(dt, msg);
@@ -49,7 +49,7 @@ export default class StateMachine<T> implements IFsm<T> {
         this.curState = state;
     }
 
-    setEntity(entity: IEntity<T>): void {
+    setEntity(entity: IFsmEntity<T>): void {
         console.log(`[FSM] StateMachine setEntity`, entity);
 
         if (entity == null || entity == undefined) {
