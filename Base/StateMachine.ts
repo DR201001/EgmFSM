@@ -1,24 +1,24 @@
-import IFsmMessage from "./interface/IFsmMessage";
-import IFsm from "./interface/IFsm";
-import IFsmState from "./interface/IFsmState";
-import IFsmEntity from "./interface/IFsmEntity";
+import IFsmMessage from "../interface/IFsmMessage";
+import IFsm from "../interface/IFsm";
+import IFsmState from "../interface/IFsmState";
+import IFsmEntity from "../interface/IFsmEntity";
 
 export default class StateMachine<T> implements IFsm<T> {
-    private curState: IFsmState = undefined;
+    private curState: IFsmState;
 
     // 状态机实体
-    private entity: IFsmEntity<T> = undefined;
+    private entity: IFsmEntity<T>;
 
-    onUpdate(dt: number, msg?: IFsmMessage<string, any>): void {
+    public onUpdate(dt: number, msg?: IFsmMessage<string, any>): void {
         this.getCurrentState()?.onUpdate(dt, msg);
     }
 
-    changeState(state: new (fsm: IFsm<T>) => IFsmState, msg?: IFsmMessage<string, any>): void {
+    public changeState(state: new (fsm: IFsm<T>) => IFsmState, msg?: IFsmMessage<string, any>): void {
         console.log(`[FSM] StateMachine changeState to ${state.name} state.`);
 
         if (state == null || state == undefined) {
             throw new Error("[FSM] StateMachine changeState with invaild state.");
-        }
+        };
 
         console.debug(`[FSM] StateMachine old state ${this.getCurrentState()?.getStateName()} will exit.`);
         this.getCurrentState()?.onExit(msg);
@@ -30,26 +30,18 @@ export default class StateMachine<T> implements IFsm<T> {
         this.getCurrentState()?.onEnter(msg);
     }
 
-    getCurrentState(): IFsmState {
-        // console.log("[FSM] StateMachine getCurrentState:", this.curState);
-
+    public getCurrentState(): IFsmState {
         return this.curState;
     }
 
-    execute(msg?: IFsmMessage<string, any>): void {
+    public execute(msg?: IFsmMessage<string, any>): void {
         console.log(`[FSM] StateMachine execute with message:`, msg);
         console.debug(`[FSM] StateMachine state ${this.getCurrentState()?.getStateName()} will execute.`, msg);
 
         this.getCurrentState()?.onExecute(msg);
     }
 
-    protected setCurrentState(state: IFsmState): void {
-        console.debug(`[FSM] StateMachine setCurrentState ${state?.getStateName()}.`);
-
-        this.curState = state;
-    }
-
-    setEntity(entity: IFsmEntity<T>): void {
+    public setEntity(entity: IFsmEntity<T>): void {
         console.log(`[FSM] StateMachine setEntity`, entity);
 
         if (entity == null || entity == undefined) {
@@ -59,9 +51,13 @@ export default class StateMachine<T> implements IFsm<T> {
         this.entity = entity;
     }
 
-    getEntity(): any {
-        // console.log(`[FSM] StateMachine getEntity`, this.entity);
-        
+    public getEntity(): any {
         return this.entity;
+    }
+
+    protected setCurrentState(state: IFsmState): void {
+        console.debug(`[FSM] StateMachine setCurrentState ${state?.getStateName()}.`);
+
+        this.curState = state;
     }
 }

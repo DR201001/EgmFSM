@@ -1,10 +1,10 @@
-import IFsmMessage from "./interface/IFsmMessage";
-import IFsm from "./interface/IFsm";
-import IFsmState from "./interface/IFsmState";
-import IFsmEntity from "./interface/IFsmEntity";
+import IFsmMessage from "../interface/IFsmMessage";
+import IFsm from "../interface/IFsm";
+import IFsmState from "../interface/IFsmState";
+import IFsmEntity from "../interface/IFsmEntity";
 
 export default abstract class FsmState<T> implements IFsmState {
-    protected machine: IFsm<T> = undefined;
+    protected machine: IFsm<T>;
 
     constructor(machine: IFsm<T>) {
         this.machine = machine;
@@ -19,15 +19,7 @@ export default abstract class FsmState<T> implements IFsmState {
     }
 
     /**
-     * 获取游戏对象
-     * @returns 
-     */
-    protected getGameObject(): T {
-        return this.getEntity()?.getGameObject();
-    }
-
-    /**
-     * 通知游戏实体
+     * 通知状态机对象
      * @param msg 消息
      */
     protected notifyToObject(msg: IFsmMessage<any, any>): void {

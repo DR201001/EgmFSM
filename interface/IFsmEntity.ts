@@ -1,5 +1,6 @@
 import IFsm from "./IFsm";
 import IFsmMessage from "./IFsmMessage";
+import IFsmObject from "./IFsmObject";
 
 export default interface IFsmEntity<T> {
     /**
@@ -14,15 +15,15 @@ export default interface IFsmEntity<T> {
     getFsm(): IFsm<T>;
 
     /**
-     * 绑定游戏对象
+     * 绑定状态机对象
      * @param object 
      */
-    bindGameObject(object: T): void;
+    bindObject(object: T): void;
 
     /**
-     * 获取游戏实体
+     * 获取状态机对象
      */
-    getGameObject(): T;
+    getObject(): T;
 
     /**
      * 通知状态机
@@ -31,16 +32,10 @@ export default interface IFsmEntity<T> {
     notifyToFsm(msg: IFsmMessage<any, any>): void;
 
     /**
-     * 通知游戏实体
+     * 通知状态机对象
      * @param msg 
      */
     notifyToObject(msg: IFsmMessage<any, any>): void;
-
-    /**
-     * 通知 entity
-     * @param msg 
-     */
-    notifyToEntity(msg: IFsmMessage<any, any>): void;
 
     /**
      * 更新
