@@ -1,6 +1,5 @@
 import IFsm from "./IFsm";
 import IFsmMessage from "./IFsmMessage";
-import IFsmObject from "./IFsmObject";
 
 export default interface IFsmEntity<T> {
     /**

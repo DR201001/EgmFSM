@@ -37,5 +37,5 @@ export default interface IFsm<T> {
     /**
      * 获取状态机实体
      */
-    getEntity(): any;
+    getEntity(): IFsmEntity<T>;
 }

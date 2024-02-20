@@ -51,7 +51,7 @@ export default class StateMachine<T> implements IFsm<T> {
         this.entity = entity;
     }
 
-    public getEntity(): any {
+    public getEntity(): IFsmEntity<T> {
         return this.entity;
     }
 
